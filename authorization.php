@@ -38,24 +38,5 @@ function auth($GT_ID,$GT_KEY){
     return $auth;
 }
 
-function post_data($url,$auth,$data){
-    $data = http_build_query($data);
-
-    $opts = array(
-        'http' => array(
-            'method'  => 'POST',
-            'header'  => "Content-type: application/x-www-form-urlencoded\r\n" . "Content-Length: " . strlen($data) . "\r\n" . "Authorization: " . $auth . "\r\n",
-            'content' => $data,
-            'timeout' => 2
-        )
-    );
-    $context = stream_context_create($opts);
-    $res    = file_get_contents($url, false, $context);
-    return $res;
-}
-
-
-
-
 
  ?>

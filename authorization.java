@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.Key;
@@ -31,7 +29,7 @@ public class gen {
     private static final String HASH_ALGORITHM = "HmacSHA256";
     public static final String SOURCES = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 
-    static String timestamp = Long.toString(System.currentTimeMillis());
+    static String timestamp = Long.toString(System.currentTimeMillis()/1000);
     static String nonce = generateString(new Random(), SOURCES, 32);
 
     public static String generateString(Random random, String characters, int length) {
