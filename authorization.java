@@ -29,9 +29,6 @@ public class gen {
     private static final String HASH_ALGORITHM = "HmacSHA256";
     public static final String SOURCES = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 
-    static String timestamp = Long.toString(System.currentTimeMillis()/1000);
-    static String nonce = generateString(new Random(), SOURCES, 32);
-
     public static String generateString(Random random, String characters, int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {
@@ -82,8 +79,9 @@ public class gen {
     public static String genHeaderParam(String gt_id, String gt_key) throws SignatureException{
     
         String GenOriString = genOriString(gt_id);
-        
         String EncryptedString = genEncryptString(GenOriString, gt_key);
+        String timestamp = Long.toString(System.currentTimeMillis()/1000);
+        String nonce = generateString(new Random(), SOURCES, 32);
 
         String HeaderParam = "gt_id=" + gt_id 
                      +",timestamp=" + timestamp 
