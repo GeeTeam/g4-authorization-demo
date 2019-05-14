@@ -37,7 +37,7 @@ public class gen {
         return new String(text);
     }
     
-    public static String genOriString(String gt_id){
+    public static String genOriString(String gt_id, String timestamp, String nonce){
 
         ArrayList<String> joinlist = new ArrayList<String>();
         joinlist.add(gt_id);
@@ -77,11 +77,10 @@ public class gen {
     }
 
     public static String genHeaderParam(String gt_id, String gt_key) throws SignatureException{
-    
-        String GenOriString = genOriString(gt_id);
-        String EncryptedString = genEncryptString(GenOriString, gt_key);
         String timestamp = Long.toString(System.currentTimeMillis()/1000);
         String nonce = generateString(new Random(), SOURCES, 32);
+	String GenOriString = genOriString(gt_id, timestamp, nonce);
+        String EncryptedString = genEncryptString(GenOriString, gt_key);
 
         String HeaderParam = "gt_id=" + gt_id 
                      +",timestamp=" + timestamp 
